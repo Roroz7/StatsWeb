@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StatsWeb – Tableaux de bord de données mondiales</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <div class="logo">StatsWeb</div>
+        <button class="cta">Demander une démo</button>
+      </nav>
+      <div class="hero-content">
+        <div>
+          <p class="badge">Plateforme de données temps réel</p>
+          <h1>
+            Centralisez des centaines de graphiques pour comprendre le monde en
+            temps réel.
+          </h1>
+          <p class="subtitle">
+            Aviation, crime, fortunes, ownership d’entreprises : tout est
+            organisé par pays, mis à jour en continu, avec des sources
+            vérifiables.
+          </p>
+          <div class="hero-actions">
+            <button class="cta primary">Créer un tableau de bord</button>
+            <button class="cta ghost">Voir les sources</button>
+          </div>
+          <div class="trust">
+            <span>🔎 Sources ouvertes</span>
+            <span>⚡ Mise à jour minute</span>
+            <span>🧠 Insights nerd-friendly</span>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <h3>Flux en direct</h3>
+          <p class="timestamp" id="liveClock">Chargement…</p>
+          <div class="live-grid">
+            <div class="live-card">
+              <h4>Bitcoin (USD)</h4>
+              <p class="value" data-metric="btc">—</p>
+              <span class="delta" data-delta="btc">Source : CoinCap</span>
+            </div>
+            <div class="live-card">
+              <h4>EUR → USD</h4>
+              <p class="value" data-metric="eurusd">—</p>
+              <span class="delta" data-delta="eurusd">Source : ExchangeRate.host</span>
+            </div>
+            <div class="live-card">
+              <h4>Séismes (24h)</h4>
+              <p class="value" data-metric="quakes">—</p>
+              <span class="delta" data-delta="quakes">Source : USGS</span>
+            </div>
+            <div class="live-card">
+              <h4>Lancements à venir</h4>
+              <p class="value" data-metric="launches">—</p>
+              <span class="delta" data-delta="launches">Source : SpaceX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Une bibliothèque de tableaux prêts à l’emploi</h2>
+            <p>
+              Chaque domaine propose des comparaisons par pays, des tendances
+              historiques et des alertes personnalisables.
+            </p>
+          </div>
+          <button class="cta ghost">Explorer les thèmes</button>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Aviation & mobilité</h3>
+            <p>
+              Comptez les avions en vol, les hubs les plus actifs et les
+              fermetures d’espaces aériens.
+            </p>
+            <ul>
+              <li>Couverture par pays, région, compagnie</li>
+              <li>Indice de congestion en temps réel</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Crime & sécurité</h3>
+            <p>
+              Statistiques de criminalité par minute, par ville et par type
+              d’incident.
+            </p>
+            <ul>
+              <li>Heatmaps dynamiques</li>
+              <li>Alertes quand les seuils changent</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Fortunes & richesse</h3>
+            <p>
+              Nombre de multi-milliardaires, flux de richesses, évolution des
+              fortunes publiques.
+            </p>
+            <ul>
+              <li>Classements par pays</li>
+              <li>Comparaisons sectorielles</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Groupes & ownership</h3>
+            <p>
+              Cartographie des entreprises, holdings, filiales et liens
+              capitalistiques.
+            </p>
+            <ul>
+              <li>Généalogies interactives</li>
+              <li>Filtres par secteur</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-header">
+          <div>
+            <h2>Exemples de graphiques en direct (APIs publiques)</h2>
+            <p>
+              Chaque tuile ci-dessous est alimentée par une API réelle et se
+              rafraîchit automatiquement. Les sources sont affichées sous chaque
+              graphique.
+            </p>
+          </div>
+          <div class="legend">
+            <span class="dot green"></span> Mise à jour active
+          </div>
+        </div>
+        <div class="chart-grid">
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Crypto principales (USD)</h3>
+              <p class="chart-source" data-source="crypto">Chargement…</p>
+            </div>
+            <canvas id="cryptoChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Variation crypto 24h</h3>
+              <p class="chart-source" data-source="cryptoChange">Chargement…</p>
+            </div>
+            <canvas id="cryptoChangeChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Taux de change (EUR)</h3>
+              <p class="chart-source" data-source="fx">Chargement…</p>
+            </div>
+            <canvas id="fxChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Température (Paris)</h3>
+              <p class="chart-source" data-source="weather">Chargement…</p>
+            </div>
+            <canvas id="tempChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Vent (Paris)</h3>
+              <p class="chart-source" data-source="wind">Chargement…</p>
+            </div>
+            <canvas id="windChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Séismes récents (magnitude)</h3>
+              <p class="chart-source" data-source="quakes">Chargement…</p>
+            </div>
+            <canvas id="quakesChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Air quality (PM2.5)</h3>
+              <p class="chart-source" data-source="air">Chargement…</p>
+            </div>
+            <canvas id="airChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Lancements SpaceX à venir</h3>
+              <p class="chart-source" data-source="spacex">Chargement…</p>
+            </div>
+            <canvas id="spacexChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>Vélos en libre-service (Paris)</h3>
+              <p class="chart-source" data-source="bikes">Chargement…</p>
+            </div>
+            <canvas id="bikesChart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div class="chart-meta">
+              <h3>ISS – vitesse & altitude</h3>
+              <p class="chart-source" data-source="iss">Chargement…</p>
+            </div>
+            <canvas id="issChart"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Sources et transparence</h2>
+            <p>
+              Chaque graphique garde la trace de ses sources, de la fréquence
+              d’actualisation et du niveau de fiabilité.
+            </p>
+          </div>
+        </div>
+        <div class="sources">
+          <div>
+            <h4>APIs utilisées ici</h4>
+            <ol>
+              <li>CoinCap, ExchangeRate.host, Open-Meteo.</li>
+              <li>USGS, OpenAQ, SpaceX, CityBikes, WhereTheISS.</li>
+              <li>Chaque source peut être remplacée par vos APIs privées.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>Prochaine étape</h4>
+            <p>
+              Fournissez les APIs que vous souhaitez, et StatsWeb construit les
+              pipelines, la normalisation et les dashboards.
+            </p>
+            <button class="cta primary">Planifier un atelier</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2024 StatsWeb — Data nerds bienvenus.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
